@@ -70,4 +70,29 @@ router.get('/setNotication/:id/:limit', (req, res) => {
          })
 })
 
+//Permet la récupération de détails d'un immobilier
+router.get('/details/:id', (req, res) => {
+    axios.get(`${API}/immobilier/getDetails/${req.params.id}`)
+        .then(response => {
+            res.status(200);
+            res.send(response.data)
+        })
+        .catch(err => {
+            res.status(500);
+            res.send(err)
+        })
+});
+
+//Permet le changement de décison
+router.get('/toggle/:id_immo', (req, res) => {
+    axios.get(`${API}/admin/immobilier/toggleValidation/${req.session.id}/${req.params.id_immo}`)
+         .then(response => {
+             res.status(200);
+             res.send(response.data)
+         })
+         .catch(err => {
+             res.status(500);
+             res.send(err)
+         })
+});
 module.exports = router;
