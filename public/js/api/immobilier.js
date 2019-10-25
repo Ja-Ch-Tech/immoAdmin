@@ -10,6 +10,10 @@ function initAdminImmo() {
             if (/immobilier/g.test(path) && /details/i.test(path[path.length - 1].split("/")[path[path.length - 1].split("/").length - 1])) {
                 getDetails(path[path.length - 1].split("/")[path[path.length - 1].split("/").length - 2])
            }
+
+            if ((path[path.length - 1] == "/") || (path[path.length - 1] == "")) {
+               setCountImmo();
+            }
         }
     })
 }
@@ -114,6 +118,21 @@ function toggleDecision(id_immo) {
         success: function (data) {
             if (data.getObjet) {
                 getDetails(id_immo)
+            }
+        }
+    });
+}
+
+function setCountImmo() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/countImmo",
+        dataType: "json",
+        success: function (data) {
+            if (data.getEtat) {
+                console.log("a");
+                
+                $("#countImmo").text(data.getObjet.total);   
             }
         }
     });

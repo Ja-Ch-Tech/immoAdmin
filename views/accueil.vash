@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item">
-                                <h2 class="number"><b>102</b></h2>
+                                <h2 class="number"><b id="countImmo">0</b></h2>
                                 <span class="desc">IMMOBILIERS</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-hotel"></i>
@@ -46,16 +46,16 @@
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item">
-                                <h2 class="number"><b>50</b></h2>
-                                <span class="desc">PROPRIETAIRE</span>
+                                <h2 class="number"><b id="countProprio">0</b></h2>
+                                <span class="desc">PROPRIETAIRES</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-account-calendar"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-md-6 col-lg-3" >
                             <div class="statistic__item">
-                                <h2 class="number"><b>100</b></h2>
+                                <h2 class="number"><b id="countSimpleUsers">0</b></h2>
                                 <span class="desc">CLIENTS</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-account-o"></i>

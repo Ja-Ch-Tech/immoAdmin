@@ -95,4 +95,31 @@ router.get('/toggle/:id_immo', (req, res) => {
              res.send(err)
          })
 });
+
+//Permet le comptage des immobiliers
+router.get('/countImmo', (req, res) => {
+    axios.get(`${API}/admin/immobilier/count/${req.session.id}`)
+        .then(response => {
+            res.status(200);
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(500);
+            res.send(err);
+        })
+});
+
+//Permet le comptage des utilisateurs
+router.get('/countUsers', (req, res) => {
+    axios.get(`${API}/admin/users/count/${req.session.id}`)
+        .then(response => {
+            res.status(200);
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(500);
+            res.send(err);
+        })
+});
+
 module.exports = router;
