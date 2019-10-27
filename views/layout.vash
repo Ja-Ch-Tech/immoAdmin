@@ -47,10 +47,10 @@
                     </div>
                     <div class="menu-sidebar2__content js-scrollbar1">
                         <div class="account2">
-                            <div class="image img-cir img-120">
-                                <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                            <div class="image img-120">
+                                <img src="/images/admin-settings-male.png" alt="John Doe" />
                             </div>
-                            <h4 class="name">john doe</h4>
+                            <h4 class="name">@model.username</h4>
                             <a href="#">Sign out</a>
                         </div>
                         <nav class="navbar-sidebar2">
@@ -118,39 +118,13 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <div class="header-button-item has-noti js-item-menu">
+                                        <div class="header-button-item js-item-menu" id="forNotification">
                                             <i class="zmdi zmdi-notifications"></i>
                                             <div class="notifi-dropdown js-dropdown">
                                                 <div class="notifi__title">
                                                     <p>Vous avez 3 Notifications</p>
                                                 </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40">
-                                                        <i class="zmdi zmdi-hotel"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p><b>Josuembuyu</b> vient de publier un bien</p>
-                                                        <span class="date">Avril 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c2 img-cir img-40">
-                                                        <i class="zmdi zmdi-account-calendar"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p><b>Josuembuyu</b> vient de creer un compte propreitaire</p>
-                                                        <span class="date">Avril 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40">
-                                                        <i class="zmdi zmdi-hotel"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p><b>Josuembuyu</b> vient de publier un bien</p>
-                                                        <span class="date">Avril 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
+                                                <div id="dropNotification"></div>
                                                 <div class="notifi__footer">
                                                     <a href="/dashboard/notifications">Toutes les notifications</a>
                                                 </div>
@@ -206,11 +180,11 @@
                         </div>
                         <div class="menu-sidebar2__content js-scrollbar2">
                             <div class="account2">
-                                <div class="image img-cir img-120">
-                                    <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                                <div class="image img-120">
+                                    <img src="/images/admin-settings-male.png" alt="John Doe" />
                                 </div>
-                                <h4 class="name">john doe</h4>
-                                <a href="#">Sign out</a>
+                                <h4 class="name">@model.username</h4>
+                                <a href="/api/logout">Sign out</a>
                             </div>
                             <nav class="navbar-sidebar2">
                                 <ul class="list-unstyled navbar__list">
@@ -407,6 +381,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/api/init.js"></script>
     <script src="/js/api/admin.js"></script>
+    <script src="/js/api/notification.js"></script>
 
 </body>
 

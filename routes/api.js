@@ -12,6 +12,7 @@ app.use(session({
 
 //Permet de faire la connexion
 router.post('/login', (req, res) => {
+    
     if ((req.body.username && req.body.username.trim(" ")) || (req.body.pswd && req.body.pswd.trim(" "))) {
         var data = {
             username: req.body.username,
@@ -23,8 +24,9 @@ router.post('/login', (req, res) => {
 
                 if (datas.data.getEtat) {
                     req.session.id = datas.data.getObjet.id_admin;
+                    req.session.username = datas.data.getObjet.username;
 
-                    if (req.session.id) {;
+                    if (req.session.id && req.session.username) {;
 
                         res.status(200);
                         res.send(datas.data);
@@ -53,6 +55,19 @@ router.get('/adminid', (req, res) => {
 
     res.status(200);
     res.send(obj)
+})
+
+//Permet de définir les notifications
+router.get('/setNotication/:id/:limit', (req, res) => {
+    axios.get(`${API}/admin/notification/${req.params.id}/${req.params.limit ? parseInt(req.params.limit, 10) : null}`)
+         .then(response => {
+             res.status(200);
+             res.send(response.data)
+         })
+         .catch(err => {
+             res.status(500);
+             res.send(err);
+         })
 })
 
 module.exports = router;

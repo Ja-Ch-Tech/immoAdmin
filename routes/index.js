@@ -3,12 +3,24 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('accueil', { title: 'Bienvenue dans l\'administration' });
+    if (req.session.id) {
+        res.status(200);
+        res.render('accueil', { title: 'Bienvenue dans l\'administration', username: req.session.username.toUpperCase() });        
+    } else {
+        res.status(200);
+        res.redirect("/")
+    }
 });
 
 // Notifications
 router.get('/notifications', function(req, res, next) {
-  res.render('notifications', { title: 'Notifications' });
+    if (req.session.id) {
+        res.status(200);
+        res.render('notifications', { title: 'Notifications', username: req.session.username.toUpperCase() });        
+    } else {
+        res.status(200);
+        res.redirect("/")
+    }
 });
 
 
