@@ -405,6 +405,8 @@
 
     <!-- Main JS-->
     <script src="/js/main.js"></script>
+    <script src="/js/api/init.js"></script>
+    <script src="/js/api/admin.js"></script>
 
 </body>
 
