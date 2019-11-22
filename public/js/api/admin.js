@@ -36,6 +36,7 @@ function login() {
             data: objData,
             before: {},
             success: function (data) {
+                console.log(data)
                 if (data.getEtat) {
                     window.location.href = "/dashboard";
                 } else {
