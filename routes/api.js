@@ -122,4 +122,30 @@ router.get('/countUsers', (req, res) => {
         })
 });
 
+//La route permettant de décliner une demande de publication des immobiliers
+router.post('/declineRequest', (req, res) => {
+    axios.post(`${API}/admin/immobilier/declineRequest/${req.session.id}/${req.body.id_immo}`, {cause: "Réfus total"})
+         .then(response => {
+            res.status(200);
+            res.send(response.data);
+         })
+         .catch(err => {
+            res.status(500);
+            res.send(err);
+         })
+})
+
+//Route pour la définition de lecture d'une notification par un administrateur
+router.post('/setRead', (req, res) => {
+    axios.post(`${API}/setRead/${req.session.id}/${req.body.id_notif}`)
+         .then(response => {
+             res.status(200);
+             res.send(response.data);
+         })
+         .catch(err => {
+             res.status(500);
+             res.send(err);
+         })
+})
+
 module.exports = router;

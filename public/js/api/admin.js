@@ -34,13 +34,24 @@ function login() {
             url: "/api/login",
             dataType: "json",
             data: objData,
-            before: {},
+            beforeSend: function (params) {
+                
+                $("#submitLogin").text("Chargement...")
+            },
             success: function (data) {
                 console.log(data)
                 if (data.getEtat) {
+                    $("#submitLogin").text("Connecté avec succès")
                     window.location.href = "/dashboard";
                 } else {
-                    console.log(data.getMessage);
+                    $("#submitLogin").css({backgroundColor: 'red'});
+                    $("#submitLogin").text("Erreur de connexion...")
+
+                    setTimeout(() => {
+                        $("#submitLogin").css({ backgroundColor: '#3cb371'});
+                        $("#submitLogin").text("Se connecter")
+                    }, 1500);
+                    
                 }
             }
         });

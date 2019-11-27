@@ -13,7 +13,7 @@
 	                            <label>Mot de passe</label>
 	                            <input class="au-input au-input--full" type="password" name="pswd" placeholder="Mot de passe">
 	                        </div>
-	                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Se connecter</button>
+	                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="submitLogin">Se connecter</button>
 	                    </form>
 	                </div>
 	            </div>

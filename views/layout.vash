@@ -56,7 +56,7 @@
                         <nav class="navbar-sidebar2">
                             <ul class="list-unstyled navbar__list">
                                 <li class="active">
-                                    <a href="#">
+                                    <a href="/">
                                         <i class="fas fa-chart-bar"></i>Dashboard</a>
                                 </li>
                                 
@@ -189,7 +189,7 @@
                             <nav class="navbar-sidebar2">
                                 <ul class="list-unstyled navbar__list">
                                     <li class="active has-sub">
-                                        <a class="js-arrow" href="#">
+                                        <a class="js-arrow" href="/">
                                             <i class="fas fa-tachometer-alt"></i>Dashboard
                                             <span class="arrow">
                                                 <i class="fas fa-angle-down"></i>
@@ -197,19 +197,19 @@
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                                             <li>
-                                                <a href="index.html">
+                                                <a href="/">
                                                     <i class="fas fa-tachometer-alt"></i>Dashboard 1</a>
                                             </li>
                                             <li>
-                                                <a href="index2.html">
+                                                <a href="/">
                                                     <i class="fas fa-tachometer-alt"></i>Dashboard 2</a>
                                             </li>
                                             <li>
-                                                <a href="index3.html">
+                                                <a href="/">
                                                     <i class="fas fa-tachometer-alt"></i>Dashboard 3</a>
                                             </li>
                                             <li>
-                                                <a href="index4.html">
+                                                <a href="/">
                                                     <i class="fas fa-tachometer-alt"></i>Dashboard 4</a>
                                             </li>
                                         </ul>

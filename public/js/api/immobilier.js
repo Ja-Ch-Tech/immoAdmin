@@ -56,8 +56,10 @@ function getDetails(id_immo) {
                                     <div class="card-header">
                                         <strong class="card-title text-uppercase">Publié par <b><a href="#">${getObjet.prenomOwner+ " "+ getObjet.nomOwner}</a></b><br>
                                             <small style="margin-top: -15px;" class="text-capitalize">${customDate2(getObjet.created_at)}</small>
-                                            
+
                                             ${viewButton()}
+
+                                            <button class="float-right btn btn-info mr-3" onclick="refuser('${id_immo}')"><i class="zmdi zmdi-close-circle-o"></i>&nbsp;Pas d'autorisation</button>
                                            
                                         </strong>
                                     </div>
@@ -133,6 +135,23 @@ function setCountImmo() {
                 console.log("a");
                 
                 $("#countImmo").text(data.getObjet.total);   
+            }
+        }
+    });
+}
+
+//Fonction permettant le réfuser de publier un immobilier qui est en attente
+function refuser(id_immo) {
+    $.ajax({
+        type: 'POST',
+        url: "/api/declineRequest",
+        data: {
+            "id_immo": id_immo
+        },
+        dataType: "json",
+        success: function (data) {
+            if (data.getEtat) {
+                window.location.href = window.location.pathname;
             }
         }
     });
