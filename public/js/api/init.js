@@ -6,6 +6,10 @@ function getHostAPI() {
     //return "http://localhost:3333";
     return "https://immo-jach-api.herokuapp.com";
 }
+
+function getHostWeb() {
+    return "http://localhost:4000";
+}
 /**
  * Fonction permettant de récupérer l'identifiant de l'utilisateur en session
  * @param {Function} callback La fonction de retour
@@ -164,3 +168,16 @@ function customDate2(date) {
 
     return 'Le '+ jour() + ' ' + mois() + ' ' + myDate.getFullYear() + ' à ' + heure() + ':' + minute();
 }
+
+function displayImage(imgs) {
+    // Get the expanded image
+    var expandImg = document.getElementById("expandedImg");
+    // Get the image text
+    var imgText = document.getElementById("imgtext");
+    // Use the same src in the expanded image as the image being clicked on from the grid
+    expandImg.src = imgs.src;
+    // Use the value of the alt attribute of the clickable image as text inside the expanded image
+    imgText.innerHTML = imgs.alt;
+    // Show the container element (hidden with CSS)
+    expandImg.parentElement.style.display = "block";
+  }

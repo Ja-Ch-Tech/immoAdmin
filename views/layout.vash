@@ -38,11 +38,11 @@
     <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         @{
-            if(model.title != "Page de connexion"){
+            if(model.title != "Connexion à l'administration"){
                 <aside class="menu-sidebar2">
                     <div class="logo">
                         <a href="#">
-                            <img src="/images/icon/logo-white.png" alt="Cool Admin" />
+                            <img style="wight:70px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
                         </a>
                     </div>
                     <div class="menu-sidebar2__content js-scrollbar1">
@@ -92,10 +92,10 @@
         <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
-        <div class="@{model.title == 'Page de connexion' ? page-content--bge5 : 'page-container2' }">
+        <div class="@{model.title == 'Connexion à l'administration' ? page-content--bge5 : 'page-container2' }">
             <!-- HEADER DESKTOP-->
             @{
-                if(model.title != "Page de connexion"){
+                if(model.title != "Connexion à l'administration"){
 
                     <header class="header-desktop2">
                         <div class="section__content section__content--p30">
@@ -103,7 +103,7 @@
                                 <div class="header-wrap2">
                                     <div class="logo d-block d-lg-none">
                                         <a href="#">
-                                            <img src="/images/icon/logo-white.png" alt="CoolAdmin" />
+                                            <img style="wight:50px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
                                         </a>
                                     </div>
                                     <div class="header-button2">
@@ -175,7 +175,7 @@
                     <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                         <div class="logo">
                             <a href="#">
-                                <img src="/images/icon/logo-white.png" alt="Cool Admin" />
+                                <img style="wight:50px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
                             </a>
                         </div>
                         <div class="menu-sidebar2__content js-scrollbar2">

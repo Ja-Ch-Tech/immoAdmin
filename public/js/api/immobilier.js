@@ -65,39 +65,33 @@ function getDetails(id_immo) {
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <h1>En construction</h1>
-                                            <!-- <div class="col-md-7">
-                                                <div style="background-color: #f5f5f5;padding: 15px;">
-                                                    <img style="width: 100%;" src="/images/bg-title-01.jpg" alt=""><hr>
-                                                    <center><p style="text-transform: uppercase;">Image principale</p></center>
+                                        <!-- The grid: four columns -->
+                                            <div class="row">
+                                                <div class="column">
+                                                    <img src="/images/bg-title-01.jpg" alt="Nature" onclick="displayImage(this);">
+                                                </div>
+                                                <div class="column">
+                                                    <img src="/images/bg-title-02.jpg" alt="Snow" onclick="displayImage(this);">
+                                                </div>
+                                                <div class="column">
+                                                    <img src="/images/bg-title-01.jpg" alt="Mountains" onclick="displayImage(this);">
+                                                </div>
+                                                <div class="column">
+                                                    <img src="/images/bg-title-02.jpg" alt="Lights" onclick="displayImage(this);">
                                                 </div>
                                             </div>
-                                            <div class="col-md-5">
-                                                <div class="row">
-                                                    <div style="background-color: #f5f5f5;padding: 15px;margin-left: 10px;margin-bottom: 15px;" class="col-md-5">
-                                                        <img style="width: 100%;" src="/images/bg-title-01.jpg" alt="">
-                                                        <center><p style="text-transform: uppercase;">Chambre</p></center>
-                                                    </div>
-                                                    <div style="background-color: #f5f5f5;padding: 15px;margin-left: 10px;margin-bottom: 15px;" class="col-md-5">
-                                                        <img style="width: 100%;" src="/images/bg-title-01.jpg" alt="">
-                                                        <center><p style="text-transform: uppercase;">Cuisine</p></center>
-                                                    </div>
-                                                    <div style="background-color: #f5f5f5;padding: 15px;margin-left: 10px;margin-bottom: 15px;" class="col-md-5">
-                                                        <img style="width: 100%;" src="/images/bg-title-01.jpg" alt="">
-                                                        <center><p style="text-transform: uppercase;">Douche</p></center>
-                                                    </div>
-                                                    <div style="background-color: #f5f5f5;padding: 15px;margin-left: 10px;margin-bottom: 15px;" class="col-md-5">
-                                                        <img style="width: 100%;" src="/images/bg-title-01.jpg" alt="">
-                                                        <center><p style="text-transform: uppercase;">Veranda</p></center>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                            
+                                            <!-- The expanding image container -->
+                                            <div class="container">
+                                                
+                                                <!-- Expanded image -->
+                                                <img src="/images/bg-title-01.jpg" id="expandedImg" style="width:100%">
+                                                
+                                                <!-- Image text -->
+                                                <div id="imgtext"></div>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <!-- <div class="col-md-3">
-                                               Type : Villa
-                                            </div> -->
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
