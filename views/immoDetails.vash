@@ -1,7 +1,13 @@
 @html.extend('layout', function(model) {
     @html.block('content', function(model) {
+       
         <div class="page-container2" id="containsDetails">
                 <!-- Dynamic content -->
+                <div style="margin-top:20%;">
+                    <center><div class="lds-ring"><div></div><div></div><div></div></div></center>
+                </div>
         </div>
+
+         
     })
 })

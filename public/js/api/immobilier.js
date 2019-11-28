@@ -28,9 +28,9 @@ function getDetails(id_immo) {
                 var {getObjet} = data,
                     viewButton = () => {
                         if (getObjet.validate) {
-                            return  `<button class="float-right btn btn-danger" onclick="toggleDecision('${id_immo}')"><i class="zmdi zmdi-close-circle-o"></i>&nbsp;Rétirer</button>`;
+                            return  `<button class="float-right btn btn-danger" onclick="toggleDecision('${id_immo}', $(this), 'retirer')"><i class="zmdi zmdi-close-circle-o"></i>&nbsp;Rétirer</button>`;
                         } else {
-                            return `<button class="float-right btn btn-success" onclick="toggleDecision('${id_immo}')"><i class="zmdi zmdi-case-check"></i>&nbsp;Autoriser</button>`;
+                            return `<button class="float-right btn btn-success" onclick="toggleDecision('${id_immo}', $(this), 'autoriser')"><i class="zmdi zmdi-case-check"></i>&nbsp;Autoriser</button>`;
                         }
                     },
                     content = `<section class="au-breadcrumb m-t-75">
@@ -66,29 +66,20 @@ function getDetails(id_immo) {
                                     <div class="card-body">
                                         <div class="row">
                                         <!-- The grid: four columns -->
-                                            <div class="row">
-                                                <div class="column">
-                                                    <img src="/images/bg-title-01.jpg" alt="Nature" onclick="displayImage(this);">
-                                                </div>
-                                                <div class="column">
-                                                    <img src="/images/bg-title-02.jpg" alt="Snow" onclick="displayImage(this);">
-                                                </div>
-                                                <div class="column">
-                                                    <img src="/images/bg-title-01.jpg" alt="Mountains" onclick="displayImage(this);">
-                                                </div>
-                                                <div class="column">
-                                                    <img src="/images/bg-title-02.jpg" alt="Lights" onclick="displayImage(this);">
-                                                </div>
+                                            <div id="listImagesForImmo" class="row">
+                                                
                                             </div>
                                             
                                             <!-- The expanding image container -->
                                             <div class="container">
                                                 
                                                 <!-- Expanded image -->
-                                                <img src="/images/bg-title-01.jpg" id="expandedImg" style="width:100%">
+                                                <img src="${getObjet.detailsImages[0].srcFormat}" id="expandedImg" style="width:100%">
                                                 
                                                 <!-- Image text -->
-                                                <div id="imgtext"></div>
+                                                <div id="imgtext">
+                                                    ${getObjet.detailsImages[0].intitule}
+                                                </div>
                                             </div>
                                         </div>
                                        
@@ -97,23 +88,98 @@ function getDetails(id_immo) {
                             </div>
                         </div>
                     </div>
+                </section>
+                <section>
+                    <div class="container">
+                        <div style="padding-bottom:15px;" class="row">
+                            <div class="col-md-3">
+                                <p><b>TYPE : </b> ${getObjet.type}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><b>MODE : </b> ${getObjet.mode}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><b>ADRESSE : </b>commune ${getObjet.adresse.commune}, avenue ${getObjet.adresse.avenue}, numero ${getObjet.adresse.numero}, reference ${getObjet.adresse.reference}</p>
+                            </div>
+                        </div>
+                        <div style="padding-bottom:15px;" class="row">
+                            <div class="col-md-2">
+                                <p><b>PRIX : </b> ${getObjet.prix}$</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><b>NBRE CHAMBRE : </b> ${getObjet.nbreChambre}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><b>NBRE DOUCHE : </b> ${getObjet.nbreDouche}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p><b>NBRE PIECE : </b> ${getObjet.nbrePiece}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p><b>SURFACE : </b> ${getObjet.surface}</p>
+                            </div>
+                        </div>
+                        <div style="padding-bottom:15px;" class="row">
+                            <div class="col-md-12">
+                                <p><b>DESCRIPTION : </b> ${getObjet.description}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </section>`;
 
                 $("#containsDetails").html(content);
+                getObjet.detailsImages.map(image => {
+                    var image = `<div class="column">
+                                    <img title="${image.intitule}" src="${image.srcFormat}" alt="${image.intitule}" onclick="displayImage(this);">
+                                </div>`;
+                    
+                    $("#listImagesForImmo").append(image);
+                });
             }
         }
     });
 }
 
 
-function toggleDecision(id_immo) {
+function toggleDecision(id_immo, element, type) {
     $.ajax({
         type: 'GET',
         url: `/api/toggle/${id_immo}`,
         dataType: "json",
+        beforeSend : function () {
+            element[0].innerHTML = "Chargement...";
+        },
         success: function (data) {
+            
+           
             if (data.getObjet) {
                 getDetails(id_immo)
+                if (type == 'retirer') {
+                    swal(
+                        {
+                            title: "DESACTIVATION IMMOBILIER", 
+                            html: "La desactivation de l'immobilier à reussit avec success, cet immobilier ne sera plus afficher sur le site", 
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonText: "Fermer",
+                            confirmButtonColor: "#DD6B55"
+                            
+                        }
+                    );
+                }else if (type == 'autoriser') {
+                    swal(
+                        {
+                            title: "ACTIVATION IMMOBILIER", 
+                            html: "L'activation de l'immobilier à reussit avec success", 
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonText: "Fermer",
+                            confirmButtonColor: "#DD6B55"
+                            
+                        }
+                    );
+                }
             }
         }
     });

@@ -31,6 +31,7 @@
 
     <!-- Main CSS-->
     <link href="/css/theme.css" rel="stylesheet" media="all">
+    <link href="/css/sweetalert.css" rel="stylesheet" media="all">
 
 </head>
 
@@ -42,7 +43,7 @@
                 <aside class="menu-sidebar2">
                     <div class="logo">
                         <a href="#">
-                            <img style="wight:70px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
+                            <img src="/images/Logos/fin3.png" alt="NdakuBizz" style="height:70px;" />
                         </a>
                     </div>
                     <div class="menu-sidebar2__content js-scrollbar1">
@@ -103,7 +104,7 @@
                                 <div class="header-wrap2">
                                     <div class="logo d-block d-lg-none">
                                         <a href="#">
-                                            <img style="wight:50px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
+                                            <img src="/images/Logos/fin3.png" alt="NdakuBizz" style="height:70px;" />
                                         </a>
                                     </div>
                                     <div class="header-button2">
@@ -175,7 +176,7 @@
                     <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                         <div class="logo">
                             <a href="#">
-                                <img style="wight:50px;heigth:60px;" src="/images/Logos/fin3.png" alt="NdakuBizz" />
+                                <img src="/images/Logos/fin3.png" alt="NdakuBizz" style="height:70px;"/>
                             </a>
                         </div>
                         <div class="menu-sidebar2__content js-scrollbar2">
@@ -379,6 +380,7 @@
 
     <!-- Main JS-->
     <script src="/js/main.js"></script>
+    <script src="/js/sweetalert.js"></script>
     <script src="/js/api/init.js"></script>
     <script src="/js/api/admin.js"></script>
     <script src="/js/api/notification.js"></script>
