@@ -16,6 +16,7 @@ function initAdminImmo() {
             }
         }
     })
+    addTypeImmo();
 }
 
 function getDetails(id_immo) {
@@ -215,4 +216,46 @@ function refuser(id_immo) {
             }
         }
     });
+}
+
+//Ajoute un type immobilier
+function addTypeImmo() {
+    $("#typeAddForm").on('submit', function (e) {
+        e.preventDefault();
+        var inputs = e.target.elements;
+            objData = {};
+        for (var index = 0; index < inputs.length; index++) {
+            
+            if (/input/i.test(e.target.elements[index].localName)) {
+
+                objData[inputs[index].name] = inputs[index].value;
+
+            }
+        }
+
+        if (objData.intitule !== "") {
+            $.ajax({
+                type: 'POST',
+                url: "/api/type/create",
+                dataType: "json",
+                data: objData,
+                beforeSend : function () {
+                    $("#addType")[0].innerHTML = "AJOUT EN COURS...";
+                },
+                success: function (data) {
+                    $("#addType")[0].innerHTML = "VALIDER";
+                    $("#errorMessageType").html(`<div class="alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> Le type a été ajouter avec success
+                      </div>`)
+                }
+            });
+        }else{
+
+            $("#errorMessageType").html(`<div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Erreur!</strong> Veuillez renseigner l'intitulé du type
+          </div>`)
+        }
+    })
 }

@@ -83,6 +83,21 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="has-sub">
+                                    <a class="js-arrow" href="#">
+                                        <i class="fas fa-th-list"></i>Types immobiliers
+                                        <span class="arrow">
+                                            <i class="fas fa-angle-down"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                        
+                                        <li>
+                                            <a href="/dashboard/type/ajouter" title="AJouter un type immobilier">
+                                                <i class="zmdi zmdi-plus-circle"></i>créer un type</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </nav>
                     </div>

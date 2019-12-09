@@ -473,8 +473,8 @@
   content: '\f164';
 }
 .zmdi-flash-off:before {
-  content: '\f165';
-}
+  content: '\f165'
+;}
 .zmdi-flash:before {
   content: '\f166';
 }

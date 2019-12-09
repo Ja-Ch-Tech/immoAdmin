@@ -148,4 +148,20 @@ router.post('/setRead', (req, res) => {
          })
 })
 
+//Cree un nouveau type
+router.post('/type/create', (req, res) => {
+    var dataType = {
+        "intitule": req.body.intitule
+    }
+    axios.post(`${API}/type/create`, dataType)
+         .then(response => {
+             res.status(200);
+             res.send(response.data);
+         })
+         .catch(err => {
+             res.status(500);
+             res.send(err);
+         })
+});
+
 module.exports = router;
