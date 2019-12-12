@@ -32,17 +32,33 @@ function setNotification(id) {
                     containerNotif.classList.add("has-noti");
 
                     data.getObjet.notifications.map(item => {
-                        var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')"><div class="notifi__item">
-                                            <div class="bg-c2 img-cir img-40">
-                                                <i class="zmdi zmdi-account-calendar"></i>
+                        
+                        if (/User Interest This Sale/i.test(item.infoNotif.typeNotif)) {
+                            var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')"><div class="notifi__item">
+                                            <div class="bg-c1 img-cir img-40">
+                                                <i class="zmdi zmdi-account-circle"></i>
                                             </div>
                                             <div class="content">
-                                                <p style="font-family: Calibri; font-size: .95em"><b>${(item.details.prenomOwner +" " + item.details.nomOwner).toUpperCase()}</b> vient de publier une ${item.details.type} à ${/Locations|location/i.test(item.details.mode) ? "louer" : "vendre"}</p>
+                                                <p style="font-family: Calibri; font-size: .95em">Un nouveau client veut contacter <b>${(item.details.prenomOwner + " " + item.details.nomOwner).toUpperCase()}</b> à propos d'un achat...</p>
                                                 <span class="date text-capitalize">${customDate(item.details.created_at)}</span>
                                             </div>
                                         </div></a>`;
+
+                            $("#dropNotification").append(content);
+                        } else {
+                            var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')"><div class="notifi__item">
+                                            <div class="bg-c2 img-cir img-40">
+                                                <i class="zmdi zmdi-home"></i>
+                                            </div>
+                                            <div class="content">
+                                                <p style="font-family: Calibri; font-size: .95em"><b>${(item.details.prenomOwner + " " + item.details.nomOwner).toUpperCase()}</b> vient de publier une ${item.details.type} à ${/Locations|location/i.test(item.details.mode) ? "louer" : "vendre"}</p>
+                                                <span class="date text-capitalize">${customDate(item.details.created_at)}</span>
+                                            </div>
+                                        </div></a>`;
+
+                            $("#dropNotification").append(content);
+                        }
                         
-                        $("#dropNotification").append(content);
                     })
                 }
             }
@@ -64,12 +80,28 @@ function getAllNotification(id) {
                 if (data.getObjet.notifications.length > 0) {
 
                     data.getObjet.notifications.map(item => {
-                        
-                        var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')" class="col-xl-12">
+                        if (/User Interest This Sale/i.test(item.infoNotif.typeNotif)) {
+                            var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')" class="col-xl-12">
                                     <div class="notifi__item">
                                         
-                                            <div class="bg-c3 img-cir img-40">
-                                                <i class="zmdi zmdi-hotel"></i>
+                                            <div class="bg-c1 img-cir img-40">
+                                                <i class="zmdi zmdi-account-circle"></i>
+                                            </div>
+                                        
+                                        <div class="content">
+                                            <p style="font-family: Calibri; font-size: .95em">Un nouveau client veut contacter <b>${(item.details.prenomOwner + " " + item.details.nomOwner).toUpperCase()}</b> à propos d'un achat...</p>
+                                            <span class="date text-capitalize">${customDate(item.details.created_at)}</span>
+                                        </div>
+                                    </div><hr style="margin:0;">
+                                </a>`;
+
+                            $("#allNotification").append(content);
+                        } else {
+                            var content = `<a href="/dashboard/immobilier/${item.details._id}/details" onClick="setRead('${item._id}')" class="col-xl-12">
+                                    <div class="notifi__item">
+                                        
+                                            <div class="bg-c2 img-cir img-40">
+                                                <i class="zmdi zmdi-home"></i>
                                             </div>
                                         
                                         <div class="content">
@@ -79,7 +111,9 @@ function getAllNotification(id) {
                                     </div><hr style="margin:0;">
                                 </a>`;
 
-                        $("#allNotification").append(content);
+                            $("#allNotification").append(content);
+                        }
+                        
                     })
                 }
             }
