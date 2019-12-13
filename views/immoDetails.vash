@@ -1,13 +1,28 @@
 @html.extend('layout', function(model) {
     @html.block('content', function(model) {
-       
+       	
         <div class="page-container2" id="containsDetails">
                 <!-- Dynamic content -->
                 <div style="margin-top:20%;">
                     <center><div class="lds-ring"><div></div><div></div><div></div></div></center>
                 </div>
         </div>
+        
+        <div class="modal" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div id="contactModalContent" class="modal-content">
+		      	<center><div class="lds-ring"><div></div><div></div><div></div></div></center>
+		    </div>
+		  </div>
+		</div>
 
+		<div class="modal" id="infosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" id="infosModalContent">
+		      	<center><div class="lds-ring"><div></div><div></div><div></div></div></center>
+		    </div>
+		  </div>
+		</div>
          
     })
 })

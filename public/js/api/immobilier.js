@@ -25,6 +25,7 @@ function getDetails(id_immo) {
         url: "/api/details/" + id_immo,
         dataType: "json",
         success: function (data) {
+            console.log(data);
             if (data.getEtat) {
                 var {getObjet} = data,
                     viewButton = () => {
@@ -37,11 +38,21 @@ function getDetails(id_immo) {
                     content = `<section class="au-breadcrumb m-t-75">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
+                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="au-breadcrumb-content">
                                         <div class="au-breadcrumb-left">
                                             <h3 class="title-3" style="text-transform: uppercase"><i class="zmdi zmdi-hotel"></i>Détails ${getObjet.type} à ${getObjet.adresse.commune}</h3>
+                                           
+                                        </div>
+                                        <div class="au-breadcrumb-right">
+                                            <a onclick="launchModalContact('${getObjet._id}')" style="margin-left:10px;" href="#" type="button" class="btn btn-secondary pull-right" data-toggle="modal" data-target="#contactModal">
+                                                <i class="zmdi zmdi-accounts"></i>&nbsp;Contact (${getObjet.nbreInterrest})
+                                            </a>
+                                            <a onclick="launchModalInfos('${getObjet.id_owner}')" href="#" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#infosModal">
+                                                <i class="zmdi zmdi-account"></i>&nbsp;Infos proprietaire
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -258,4 +269,119 @@ function addTypeImmo() {
           </div>`)
         }
     })
+}
+
+//Recupere les contacts sur un immobilier
+function launchModalContact(id_immo) {
+    $.ajax({
+        type: 'GET',
+        url: "/api/listUserInterest/" + id_immo,
+        dataType: "json",
+        success: function (data) {
+            if (data.getEtat) {
+                var data = data.getObjet,
+                infos = `<div class="modal-header">
+                    <h5 class="modal-title">Liste contacts (${data.length})</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div style="height:300px;overflow-y:scroll;" class="modal-body">
+                        <div class="row" id="contentContactList"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  </div>`;
+                $("#contactModalContent").html(infos);
+                data.map(user => {
+                    var contact = function () {
+                            user.contacts.map(contact => {
+                                $("#contact_user_phone_" + user._id).append(`<span style="background-color:#eee;padding:5px;margin-left:5px;">${contact.telephone}</span>`);
+
+                                $("#contact_user_email_" + user._id).append(`<p style="background-color:#eee;padding:5px;margin-left:5px;margin-bottom:10px;"><i class="zmdi zmdi-email"></i>&nbsp;${contact.email}</p>`);
+                            });
+                            
+                        },
+                         infosContactUser = `<div class="col-md-6"> 
+                            <div class="card">
+                                <div class="card-header">
+                                    <center>
+                                        <img class="img-thumbnail" style="height:12em;" src="${user.image.srcFormat}" title="" />
+                                        <h4>${user.prenom}&nbsp;${user.nom}</h4>
+                                    </center>
+                                </div>
+                                <div class="card-body">
+                                    <center>
+                                        <p style="margin-bottom:15px;"><i class="zmdi zmdi-my-location"></i>&nbsp; ${user.adresse.avenue ? `<span>Avenue : <span>${user.adresse.avenue}</span></span>` : ""} ${user.adresse.numero ? `<span>${user.adresse.numero}</span>` : ""}, ${user.adresse.quartier ? `<span>Quartier : <span>${user.adresse.quartier}</span></span>` : ""}, ${user.adresse.commune ? `<span>${user.adresse.commune}</span>` : ""}</p>
+                                    </center>
+                                    <p  style="margin-bottom:15px;" id="contact_user_phone_${user._id}"><i class="zmdi zmdi-phone"></i>&nbsp;</p>
+                                    <div  style="margin-bottom:15px;" id="contact_user_email_${user._id}"></div>
+                                </div>
+                            </div> 
+                        </div>`;
+
+                    $("#contentContactList").append(infosContactUser);
+
+                    contact();
+                });
+            }else{
+                $("#contactModalContent").html(`<div class="modal-header">
+                    <h5 class="modal-title">Liste contacts (0)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div style="height:300px;overflow-y:scroll;" class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <center><h2>AUCUN CONTACT TROUVE POUR CET IMMOBILIER</h2></center>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  </div>`);
+            }
+            
+            
+        }
+    });
+}
+
+//recupere les infos du proprietaire d'un immobilier
+function launchModalInfos(id_users) {
+    $.ajax({
+        type: 'GET',
+        url: "/api/immo_contact/" + id_users,
+        dataType: "json",
+        success: function (data) {
+            var sortieContact = 0,
+                contact = function () {
+                    data.getObjet.contacts.map(contact => {
+                        $("#contact_phone").append(`<span style="background-color:#eee;padding:5px;margin-left:5px;">${contact.telephone}</span>`);
+
+                        $("#contact_email").append(`<span style="background-color:#eee;padding:5px;margin-left:5px;">${contact.email}</span>`);
+                    });
+                    
+                },
+
+                infos = ` <div class="modal-header">
+                    <h5 class="modal-title"><img style="height:100px;width:100px;" class="img-thumbnail" src="${data.getObjet.image.srcFormat}" title="${data.getObjet.image.name}">&nbsp;${data.getObjet.prenom} ${data.getObjet.nom}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div height:300px;overflow-y:scroll;overflow-x:hidden;" class="modal-body">
+                    <p style="margin-bottom:15px;"><i class="zmdi zmdi-my-location"></i>&nbsp; ${data.getObjet.adresse.avenue ? `<span>Avenue : <span>${data.getObjet.adresse.avenue}</span></span>` : "Avenue non renseignée"} ${data.getObjet.adresse.numero ? `<span>${data.getObjet.adresse.numero}</span>` : "numero non renseigné"}, ${data.getObjet.adresse.quartier ? `<span>Quartier : <span>${data.getObjet.adresse.quartier}</span></span>` : "Quartier non renseigné"}, ${data.getObjet.adresse.commune ? `<span>${data.getObjet.adresse.commune}</span>` : "Commune non renseignée"}</p>
+
+                    <p  style="margin-bottom:15px;" id="contact_phone"><i class="zmdi zmdi-phone"></i>&nbsp;</p>
+                    <p  style="margin-bottom:15px;" id="contact_email"><i class="zmdi zmdi-email"></i>&nbsp;</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  </div>`;
+            $("#infosModalContent").html(infos);
+            contact();
+        }
+    });
 }
