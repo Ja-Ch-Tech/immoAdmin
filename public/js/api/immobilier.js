@@ -90,7 +90,7 @@ function getDetails(id_immo) {
                                                 
                                                 <!-- Image text -->
                                                 <div id="imgtext">
-                                                    ${getObjet.detailsImages[0].intitule}
+                                                    ${getObjet.detailsImages.length > 0 ? getObjet.detailsImages[0].intitule : "default Avatar"}
                                                 </div>
                                             </div>
                                         </div>
