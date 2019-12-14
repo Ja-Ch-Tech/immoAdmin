@@ -9,6 +9,7 @@ var session = require('cookie-session');
 var loginRouter = require('./routes/login');
 var indexRouter = require('./routes/index');
 var immoRouter = require('./routes/immobilier');
+var typeRouter = require('./routes/type');
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -30,6 +31,7 @@ app.use(session({
 app.use('/', loginRouter);
 app.use('/dashboard', indexRouter);
 app.use('/dashboard', immoRouter);
+app.use('/dashboard', typeRouter);
 
 app.use('/api', apiRouter);
 

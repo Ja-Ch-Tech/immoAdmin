@@ -148,4 +148,46 @@ router.post('/setRead', (req, res) => {
          })
 })
 
+//Cree un nouveau type
+router.post('/type/create', (req, res) => {
+    var dataType = {
+        "intitule": req.body.intitule
+    }
+    axios.post(`${API}/type/create`, dataType)
+         .then(response => {
+             res.status(200);
+             res.send(response.data);
+         })
+         .catch(err => {
+             res.status(500);
+             res.send(err);
+         })
+});
+
+//Recupere les informations d'un proprietaire
+router.get('/immo_contact/:id', (req, res) => {
+    axios.get(`${API}/users/infoOwner/${req.params.id}`)
+        .then(response => {
+            res.status(200);
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(500);
+            res.send(err);
+        })
+});
+
+//Recupere la liste de personnes interessees par un immo
+router.get('/listUserInterest/:id', (req, res) => {
+    axios.get(`${API}/extra/listUserInterest/${req.params.id}`)
+        .then(response => {
+            res.status(200);
+            res.send(response.data);
+        })
+        .catch(err => {
+            res.status(500);
+            res.send(err);
+        })
+});
+
 module.exports = router;
