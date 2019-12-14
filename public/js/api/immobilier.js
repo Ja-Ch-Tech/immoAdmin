@@ -86,7 +86,7 @@ function getDetails(id_immo) {
                                             <div class="container">
                                                 
                                                 <!-- Expanded image -->
-                                                <img src="${getObjet.detailsImages.length > 0 ? getObjet.detailsImages[0].srcFormat : "/images/house-default.jpg"}" id="expandedImg" style="width:100%">
+                                                <img src="${getObjet.detailsImages && getObjet.detailsImages.length > 0 ? getObjet.detailsImages[0].srcFormat : "/images/house-default.jpg"}" id="expandedImg" style="width:100%">
                                                 
                                                 <!-- Image text -->
                                                 <div id="imgtext">
