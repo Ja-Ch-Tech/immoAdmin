@@ -2,7 +2,7 @@
   @html.block('content', function(model) {
    		<div class="container">
 	        <div style="padding-top: 4%;" class="login-wrap">
-                <img src="/images/Logos/fin4.png" alt="Logo" style="height: 90px; width: 100px; margin-bottom: 2em; transform: translateX(200%);">
+                <img src="/images/Logos/fin4.png" class="hide-xs" alt="Logo" style="height: 90px; width: 100px; margin-bottom: 2em; transform: translateX(200%);">
 	            <div class="login-content">
 	                <div class="login-form">
 	                    <form method="post" id="loginForm">
