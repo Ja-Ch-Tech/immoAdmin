@@ -179,7 +179,7 @@ router.get('/immo_contact/:id', (req, res) => {
 
 //Recupere la liste de personnes interessees par un immo
 router.get('/listUserInterest/:id', (req, res) => {
-    axios.get(`${API}/extra/listUserInterest/${req.params.id}`)
+    axios.get(`${API}/extra/listUserInterest/${req.params.id}/${req.session.id}`)
         .then(response => {
             res.status(200);
             res.send(response.data);
